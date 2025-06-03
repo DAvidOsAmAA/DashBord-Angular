@@ -1,0 +1,16 @@
+<div class="breadcrumb-container">
+  <nav class="breadcrumb">
+    <ng-container *ngFor="let item of breadcrumbs; let i = index">
+      <ng-container *ngIf="i !== 0">
+        <span class="separator">></span>
+      </ng-container>
+      <a
+        [routerLink]="item.url"
+        class="breadcrumb-item"
+        [class.active]="i === breadcrumbs.length - 1"
+      >
+        {{ item.label }}
+      </a>
+    </ng-container>
+  </nav>
+</div>

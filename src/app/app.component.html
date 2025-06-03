@@ -1,2 +1,14 @@
+<div class="app-container">
+  <app-top-bar></app-top-bar>
 
-<router-outlet></router-outlet>
+  <div class="main-content" [class.mobile-view]="isMobileView">
+    <app-sidebar *ngIf="!isMobileView"></app-sidebar>
+
+    <div class="content-area">
+      <app-breadcrumb *ngIf="!isMobileView"></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <app-mobile-nav *ngIf="isMobileView"></app-mobile-nav>
+</div>

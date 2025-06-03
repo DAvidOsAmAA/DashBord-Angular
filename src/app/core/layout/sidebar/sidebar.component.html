@@ -1,0 +1,54 @@
+<div class="sidebar-container">
+  <!-- Logo -->
+  <div class="logo"
+  routerLink="/"
+  >
+    <img src="/icon/Logo.png" alt="Rose Logo" />
+  </div>
+
+  <!-- Preview Website Button -->
+  <button pButton class="preview-btn">
+    <img src="/icon/flower.png" alt="Logo" />
+    Preview Website
+  </button>
+
+  <!-- Navigation Menu -->
+  <div class="nav-menu">
+    <a class="nav-item" routerLink="/overview" routerLinkActive="active">
+      <img src="/icon/layout-dashboard.png" alt="Logo" />
+      <span>Overview</span>
+    </a>
+
+    <a
+      class="nav-item"
+      routerLink="/categories"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <img src="/icon/clipboard-list.png" alt="Logo" />
+      <span>Categories</span>
+    </a>
+
+    <a class="nav-item" routerLink="/occasions" routerLinkActive="active">
+      <img src="/icon/calendar-heart.png" alt="Logo" />
+      <span>Occasions</span>
+    </a>
+
+    <a class="nav-item" routerLink="/products" routerLinkActive="active">
+      <img src="/icon/package.png" alt="Logo" />
+      <span>Products</span>
+    </a>
+  </div>
+
+  <!-- User Profile -->
+  <div class="user-profile">
+    <img src="/icon/Avatar.png" alt="User Avatar" class="user-avatar" />
+    <div class="user-info">
+      <p class="user-name">Firstname Lastname</p>
+      <p class="user-email">user-email&#64;example.com</p>
+    </div>
+    <button pButton class="p-button-text settings-btn">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+  </div>
+</div>
