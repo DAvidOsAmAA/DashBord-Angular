@@ -1,0 +1,341 @@
+.card {
+  padding: 2rem;
+  background: var(--surface-card);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  button {
+    background: #F82BA9;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: darken(#F82BA9, 5%);
+    }
+
+    .p-button-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.search-container {
+  margin-bottom: 1.5rem;
+
+  .p-input-icon-left {
+    width: 100%;
+    max-width: 300px;
+
+    i {
+      color: #6B7280;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem 0.5rem 0.5rem 2rem;
+      border-radius: 6px;
+      border: 1px solid #E5E7EB;
+      
+      &:focus {
+        border-color: #F82BA9;
+        box-shadow: 0 0 0 2px #F82BA91A;
+      }
+
+      &::placeholder {
+        color: #9CA3AF;
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .products-table {
+    background: #FFFFFF;
+
+    .p-datatable-header {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .p-datatable-wrapper {
+      overflow-x: hidden;
+    }
+
+    .p-datatable-thead > tr > th {
+      background: #FFFFFF;
+      color: #000000;
+      font-weight: 600;
+      padding: 1rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .p-datatable-tbody > tr {
+      background: #FFFFFF;
+
+      &:hover {
+        background: #F82BA90D !important;
+      }
+
+      > td {
+        padding: 1rem;
+        color: #000000;
+        border-bottom: 1px solid #E5E7EB;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .p-datatable-tbody > tr > td {
+        background: #F8F9FA;
+      }
+    }
+  }
+
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    span {
+      font-weight: 500;
+      color: #000000;
+    }
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .pi-star-fill {
+      color: #FFC107;
+      font-size: 1rem;
+    }
+
+    span {
+      color: #6B7280;
+      font-size: 0.875rem;
+    }
+  }
+
+  .actions-desktop {
+    display: none;
+    gap: 0.5rem;
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+
+    .update-button,
+    .delete-button {
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+      border: none;
+
+      .p-button-icon {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+    }
+
+    .update-button {
+      background-color: #0063D01A !important;
+      color: #0063D0 !important;
+
+      &:hover {
+        background-color: #0063D033 !important;
+      }
+    }
+
+    .delete-button {
+      background-color: #FF00001A !important;
+      color: #FF0000 !important;
+
+      &:hover {
+        background-color: #FF000033 !important;
+      }
+    }
+  }
+
+  .actions-mobile {
+    display: block;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    .p-overlaypanel {
+      .p-overlaypanel-content {
+        background: #F8F9FA;
+        padding: 0;
+      }
+    }
+
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      min-width: 150px;
+      padding: 0.5rem;
+      background: #F8F9FA;
+
+      .update-button,
+      .delete-button {
+        padding: 8px 12px;
+        border-radius: 6px;
+        justify-content: flex-start;
+        width: 100%;
+        border: none;
+        font-weight: 500;
+
+        .p-button-icon {
+          font-size: 14px;
+          margin-right: 8px;
+        }
+      }
+
+      .update-button {
+        background-color: #0063D01A !important;
+        color: #0063D0 !important;
+
+        &:hover {
+          background-color: #0063D033 !important;
+        }
+      }
+
+      .delete-button {
+        background-color: #FF00001A !important;
+        color: #FF0000 !important;
+
+        &:hover {
+          background-color: #FF000033 !important;
+        }
+      }
+    }
+  }
+
+  .p-paginator {
+    background: #FFFFFF;
+    padding: 1rem;
+    border-top: 1px solid #E5E7EB;
+
+    @media (max-width: 768px) {
+      background: #F8F9FA;
+    }
+
+    .p-paginator-pages {
+      .p-paginator-page {
+        min-width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 0.125rem;
+        border-radius: 6px;
+        
+        &.p-highlight {
+          background: #F82BA9 !important;
+          color: #FFFFFF !important;
+          border: none !important;
+        }
+
+        &:not(.p-highlight):hover {
+          background: #F82BA91A !important;
+          color: #F82BA9 !important;
+        }
+      }
+    }
+
+    .p-paginator-first,
+    .p-paginator-prev,
+    .p-paginator-next,
+    .p-paginator-last {
+      border-radius: 6px;
+      min-width: 2.5rem;
+      height: 2.5rem;
+
+      &:hover {
+        background: #F82BA91A !important;
+        color: #F82BA9 !important;
+      }
+
+      &.p-disabled {
+        opacity: 0.5;
+      }
+    }
+
+    .p-paginator-rpp-options {
+      display: none !important;
+    }
+  }
+
+  .p-confirm-dialog {
+    .p-dialog-header {
+      background: #FFFFFF;
+      padding: 1.5rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .p-dialog-content {
+      background: #FFFFFF;
+      padding: 1.5rem;
+    }
+
+    .p-dialog-footer {
+      background: #FFFFFF;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #E5E7EB;
+
+      .p-button {
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+
+        &.p-confirm-dialog-accept {
+          background: #F82BA9;
+          border: none;
+
+          &:hover {
+            background: darken(#F82BA9, 5%);
+          }
+        }
+
+        &.p-confirm-dialog-reject {
+          background: #FFFFFF;
+          border: 1px solid #E5E7EB;
+          color: white;
+
+          &:hover {
+            background: #F3F4F6;
+          }
+        }
+      }
+    }
+  }
+
+  .p-toast {
+    .p-toast-message {
+      border-radius: var(--border-radius);
+    }
+  }
+}

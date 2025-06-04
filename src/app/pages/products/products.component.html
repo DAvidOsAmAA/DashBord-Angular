@@ -1,0 +1,105 @@
+<div class="card">
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+  <div class="header">
+    <h1>Products Management</h1>
+    <button pButton 
+            label="Add a new product" 
+            icon="fas fa-plus"
+            class="p-button-success">
+    </button>
+  </div>
+  <div class="search-container">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="text" pInputText placeholder="Search products..." [(ngModel)]="searchQuery" (input)="filterProducts()" style="background: #FFFFFF;"/>
+    </span>
+  </div>
+
+  <p-table
+    [value]="filteredProducts"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem', 'background': '#FFFFFF' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    styleClass="products-table"
+    [responsive]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Discounted Price</th>
+        <th>Rating</th>
+        <th>Created Date</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <div class="product-name">
+            <img [src]="product.imgCover" [alt]="product.title" width="32" class="shadow-4" />
+            <span>{{ product.title }}</span>
+          </div>
+        </td>
+        <td>{{ product.price | currency:'USD' }}</td>
+        <td>{{ product.priceAfterDiscount | currency:'USD' }}</td>
+        <td>
+          <div class="rating">
+            <i class="pi pi-star-fill"></i>
+            <span>{{ product.rateAvg }} /5 ({{ product.rateCount }} reviews)</span>
+          </div>
+        </td>
+        <td>{{ product.createdAt | date:'medium' }}</td>
+        <td>
+          <!-- Desktop view -->
+          <div class="actions-desktop">
+            <button pButton 
+                    icon="fas fa-edit"
+                    class="p-button-text update-button"
+                    (click)="onUpdate(product)"> Update
+            </button>
+            <button pButton 
+                    icon="fas fa-trash-alt"
+                    class="p-button-text delete-button"
+                    (click)="confirmDelete(product)"> Delete
+            </button>
+          </div>
+          
+          <!-- Mobile view -->
+          <div class="actions-mobile">
+            <button pButton 
+                    icon="fas fa-ellipsis-v"
+                    class="p-button-text"
+                    style="color: #F82BA9"
+                    (click)="op.toggle($event)">
+            </button>
+            <p-overlayPanel #op>
+              <div class="mobile-menu" style="background: #FFFFFF">
+                <button pButton 
+                        label="Update" 
+                        icon="fas fa-edit"
+                        class="p-button-text update-button"
+                        style="background: none; color: #0063D0 !important;"
+                        (click)="onUpdate(product); op.hide()">
+                </button>
+                <button pButton 
+                        label="Delete" 
+                        icon="fas fa-trash-alt"
+                        class="p-button-text delete-button"
+                        style="background: none; color: #FF0000 !important;"
+                        (click)="confirmDelete(product); op.hide()">
+                </button>
+              </div>
+            </p-overlayPanel>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div> 
