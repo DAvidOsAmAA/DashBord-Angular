@@ -3,6 +3,14 @@
   background: var(--surface-card);
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 0.75rem;
+  }
 }
 
 .header {
@@ -10,12 +18,27 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
 
   h1 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
     color: #000000;
+    
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+    
+    @media (max-width: 576px) {
+      text-align: center;
+      font-size: 1.125rem;
+    }
   }
 
   button {
@@ -26,6 +49,11 @@
     color: #FFFFFF;
     font-weight: 500;
     transition: background-color 0.2s;
+    
+    @media (max-width: 576px) {
+      width: 100%;
+      padding: 0.75rem 1rem;
+    }
 
     &:hover {
       background: darken(#F82BA9, 5%);
@@ -67,6 +95,83 @@
 }
 
 :host ::ng-deep {
+  // P-Button general styling
+  .p-button {
+    display: inline-flex;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF !important;
+    background: #F82BA9 !important;
+    border: 1px solid #F82BA9 !important;
+    padding-block: var(--p-button-padding-y);
+    padding-inline: var(--p-button-padding-x);
+    font-size: 1rem;
+    font-family: inherit;
+    font-feature-settings: inherit;
+    transition: background var(--p-button-transition-duration), color var(--p-button-transition-duration), border-color var(--p-button-transition-duration), outline-color var(--p-button-transition-duration), box-shadow var(--p-button-transition-duration);
+    border-radius: var(--p-button-border-radius);
+    outline-color: transparent;
+    gap: var(--p-button-gap);
+
+    &:hover:not(:disabled) {
+      background: #E6259A !important;
+      border-color: #E6259A !important;
+      color: #FFFFFF !important;
+    }
+
+    &:focus:not(:disabled) {
+      background: #F82BA9 !important;
+      border-color: #F82BA9 !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 0 0 2px #F82BA91A !important;
+    }
+
+    &:active:not(:disabled) {
+      background: #D91E8C !important;
+      border-color: #D91E8C !important;
+      color: #FFFFFF !important;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // P-Select custom styling
+  .p-select {
+    display: inline-flex;
+    position: relative;
+    user-select: none;
+    background: #F82BA9 !important;
+    border: 1px solid #F82BA9 !important;
+    transition: background var(--p-select-transition-duration), color var(--p-select-transition-duration), border-color var(--p-select-transition-duration), outline-color var(--p-select-transition-duration), box-shadow var(--p-select-transition-duration);
+    border-radius: var(--p-select-border-radius);
+    outline-color: transparent;
+    box-shadow: var(--p-select-shadow);
+    color: #FFFFFF !important;
+
+    &:hover {
+      background: #E6259A !important;
+      border-color: #E6259A !important;
+    }
+
+    &:focus {
+      background: #F82BA9 !important;
+      border-color: #F82BA9 !important;
+      box-shadow: 0 0 0 2px #F82BA91A !important;
+    }
+
+    .p-select-label {
+      color: #FFFFFF !important;
+    }
+
+    .p-select-dropdown {
+      color: #FFFFFF !important;
+    }
+  }
   .products-table {
     background: #FFFFFF;
 
@@ -77,7 +182,11 @@
     }
 
     .p-datatable-wrapper {
-      overflow-x: hidden;
+      overflow-x: auto;
+      
+      @media (max-width: 768px) {
+        overflow-x: scroll;
+      }
     }
 
     .p-datatable-thead > tr > th {
@@ -86,6 +195,17 @@
       font-weight: 600;
       padding: 1rem;
       border-bottom: 1px solid #E5E7EB;
+      white-space: nowrap;
+      
+      @media (max-width: 768px) {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.875rem;
+      }
+      
+      @media (max-width: 576px) {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+      }
     }
 
     .p-datatable-tbody > tr {
@@ -99,6 +219,16 @@
         padding: 1rem;
         color: #000000;
         border-bottom: 1px solid #E5E7EB;
+        
+        @media (max-width: 768px) {
+          padding: 0.75rem 0.5rem;
+          font-size: 0.875rem;
+        }
+        
+        @media (max-width: 576px) {
+          padding: 0.5rem 0.25rem;
+          font-size: 0.75rem;
+        }
       }
     }
 
@@ -117,11 +247,25 @@
     img {
       border-radius: 4px;
       object-fit: cover;
+      
+      @media (max-width: 576px) {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     span {
       font-weight: 500;
       color: #000000;
+      
+      @media (max-width: 768px) {
+        font-size: 0.875rem;
+      }
+      
+      @media (max-width: 576px) {
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
     }
   }
 
@@ -245,24 +389,51 @@
 
     @media (max-width: 768px) {
       background: #F8F9FA;
+      padding: 0.75rem;
+      
+      .p-paginator-current {
+        font-size: 0.875rem;
+      }
     }
 
     .p-paginator-pages {
+      @media (max-width: 576px) {
+        gap: 0.125rem;
+      }
+      
       .p-paginator-page {
         min-width: 2.5rem;
         height: 2.5rem;
         margin: 0 0.125rem;
         border-radius: 6px;
+        background: transparent;
+        border: 1px solid #E5E7EB;
+        color: #6B7280;
+        
+        @media (max-width: 576px) {
+          min-width: 2rem;
+          height: 2rem;
+          margin: 0 0.0625rem;
+          font-size: 0.875rem;
+        }
         
         &.p-highlight {
           background: #F82BA9 !important;
           color: #FFFFFF !important;
-          border: none !important;
+          border: 1px solid #F82BA9 !important;
         }
 
         &:not(.p-highlight):hover {
           background: #F82BA91A !important;
           color: #F82BA9 !important;
+          border-color: #F82BA9 !important;
+        }
+
+        &:not(.p-highlight):focus {
+          background: #F82BA91A !important;
+          color: #F82BA9 !important;
+          border-color: #F82BA9 !important;
+          box-shadow: 0 0 0 2px #F82BA91A !important;
         }
       }
     }
@@ -274,14 +445,34 @@
       border-radius: 6px;
       min-width: 2.5rem;
       height: 2.5rem;
+      background: transparent;
+      border: 1px solid #E5E7EB;
+      color: #6B7280;
 
-      &:hover {
+      @media (max-width: 576px) {
+        min-width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+      }
+
+      &:hover:not(.p-disabled) {
         background: #F82BA91A !important;
         color: #F82BA9 !important;
+        border-color: #F82BA9 !important;
+      }
+
+      &:focus:not(.p-disabled) {
+        background: #F82BA91A !important;
+        color: #F82BA9 !important;
+        border-color: #F82BA9 !important;
+        box-shadow: 0 0 0 2px #F82BA91A !important;
       }
 
       &.p-disabled {
         opacity: 0.5;
+        background: transparent !important;
+        color: #9CA3AF !important;
+        border-color: #E5E7EB !important;
       }
     }
 
@@ -291,42 +482,56 @@
   }
 
   .p-confirm-dialog {
+    background: #FFFFFF !important;
+    
     .p-dialog-header {
-      background: #FFFFFF;
+      background: #FFFFFF !important;
       padding: 1.5rem;
       border-bottom: 1px solid #E5E7EB;
+      color: #000000;
     }
 
     .p-dialog-content {
-      background: #FFFFFF;
+      background: #FFFFFF !important;
       padding: 1.5rem;
+      color: #000000;
     }
 
     .p-dialog-footer {
-      background: #FFFFFF;
+      background: #FFFFFF !important;
       padding: 1rem 1.5rem;
       border-top: 1px solid #E5E7EB;
 
       .p-button {
         border-radius: 6px;
         padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
 
         &.p-confirm-dialog-accept {
-          background: #F82BA9;
-          border: none;
+          background: #F82BA9 !important;
+          border: none !important;
+          color: #FFFFFF !important;
 
           &:hover {
-            background: darken(#F82BA9, 5%);
+            background: #E6259A !important;
+          }
+
+          &:focus {
+            box-shadow: 0 0 0 2px #F82BA91A !important;
           }
         }
 
         &.p-confirm-dialog-reject {
-          background: #FFFFFF;
-          border: 1px solid #E5E7EB;
-          color: white;
+          background: #F82BA9 !important;
+          border: none !important;
+          color: #FFFFFF !important;
 
           &:hover {
-            background: #F3F4F6;
+            background: #E6259A !important;
+          }
+
+          &:focus {
+            box-shadow: 0 0 0 2px #F82BA91A !important;
           }
         }
       }
