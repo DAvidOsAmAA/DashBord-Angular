@@ -1,14 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
+import { BreadcrumbComponent } from './core/layout/sidebar/components/breadcrumb/breadcrumb.component';
+import { TopBarComponent } from './core/layout/top-bar/top-bar.component';
+import { MobileNavComponent } from './core/layout/mobile-nav/mobile-nav.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule],
-
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    SidebarComponent,
+    BreadcrumbComponent,
+    TopBarComponent,
+    MobileNavComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'dashboard';
+export class AppComponent implements OnInit {
+  isMobileView = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+      window.addEventListener('resize', () => this.checkScreenSize());
+    }
+  }
+
+  private checkScreenSize() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobileView = window.innerWidth <= 768;
+    }
+  }
 }

@@ -1,0 +1,45 @@
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #fdfdfd;
+  text-align: center;
+  padding: 20px;
+}
+
+.error-content {
+  max-width: 500px;
+}
+
+.error-illustration img {
+  max-width: 100%;
+  height: auto;
+}
+
+.error-title {
+  font-size: 24px;
+  margin-top: 20px;
+  color: #333;
+}
+
+.error-message {
+  font-size: 16px;
+  color: #777;
+  margin: 10px 0 20px;
+}
+
+.error-home-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff4081;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.error-home-btn:hover {
+  background-color: #e73370;
+}

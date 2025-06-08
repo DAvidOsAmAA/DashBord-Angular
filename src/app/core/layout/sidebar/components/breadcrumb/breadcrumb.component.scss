@@ -1,0 +1,95 @@
+.breadcrumb-container {
+  padding: 20px 30px;
+  background: white;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-item {
+  color: #666;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #f82ba9;
+  }
+
+  &.active {
+    color: #f82ba9;
+    pointer-events: none;
+    font-weight: 500;
+  }
+}
+
+.separator {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.separator {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+::ng-deep {
+  .custom-breadcrumb {
+    border: none;
+    padding: 0;
+    background: transparent;
+
+    .p-breadcrumb-chevron {
+      color: #666;
+      margin: 0 8px;
+      font-size: 14px;
+    }
+
+    .p-menuitem-text {
+      color: #666;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 100%;
+    }
+
+    .p-menuitem-link {
+      &:focus {
+        box-shadow: none;
+      }
+      &:hover {
+        .p-menuitem-text {
+          color: #f82ba9;
+        }
+      }
+    }
+
+    .p-breadcrumb-home {
+      .p-menuitem-text {
+        color: #666;
+      }
+      &:hover {
+        .p-menuitem-text {
+          color: #f82ba9;
+        }
+      }
+    }
+    .pink-text .p-menuitem-text {
+      color: #f82ba9 !important;
+      font-weight: 500;
+    }
+    .p-menuitem.p-disabled {
+      .p-menuitem-text {
+        color: #f82ba9;
+      }
+    }
+  }
+}
