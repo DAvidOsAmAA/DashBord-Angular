@@ -1,0 +1,13 @@
+::ng-deep .serach-iconfield {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 1.5%;
+}
+
+::ng-deep .serach-iconfield:focus {
+  border-color: #F82BA9 !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(248, 43, 169, 0.2); 
+}
