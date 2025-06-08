@@ -1,10 +1,17 @@
 import { Routes } from '@angular/router';
+import { ProductsComponent } from './pages/products/products.component';
 
 export const routes: Routes = [
   {
+    path: 'products',
+    component: ProductsComponent,
+    title: 'Products Management',
+    data: { breadcrumb: 'Products' },
+  },
+  {
     path: '',
-    redirectTo: 'overview',
-    pathMatch: 'full',
+    redirectTo: '/products',
+    pathMatch: 'full'
   },
   {
     path: 'overview',
