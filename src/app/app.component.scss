@@ -1,0 +1,31 @@
+.app-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  display: flex;
+  min-height: 100vh;
+
+  &.mobile-view {
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  app-sidebar {
+    &.hidden-mobile {
+      display: none !important;
+    }
+  }
+
+  .content-area {
+    width: 100%;
+  }
+}
