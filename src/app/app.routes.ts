@@ -23,17 +23,15 @@ export const routes: Routes = [
       ),
     title: 'Show Category',
     data: { breadcrumb: 'Categories' },
-    children: [
-      {
-        path: 'add',
-        loadComponent: () =>
-          import('./pages/add-categories/add-categories.component').then(
-            (m) => m.AddCategoriesComponent
-          ),
-        title: 'Add Category',
-        data: { breadcrumb: 'Add Categories' },
-      },
-    ],
+  },
+    {
+    path: 'categories/add-category',
+    loadComponent: () =>
+      import('./pages/add-categories/add-categories.component').then(
+        (m) => m.AddCategoriesComponent
+      ),
+    title: 'add Category',
+    data: { breadcrumb: 'categories > add-category' },
   },
   {
     path: '**',
