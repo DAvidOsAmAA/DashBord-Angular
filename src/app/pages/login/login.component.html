@@ -1,0 +1,45 @@
+<p-toast />
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg p-8 rounded-xl w-full max-w-sm">
+    <h2 class="text-2xl font-bold text-center text-pink-600 mb-6">Login</h2>
+
+    <form [formGroup]="loginForm">
+
+      <div>
+        <input type="email" name="email" id="email" formControlName="email" [ngClass]="{
+            'border-red-500 dark:border-red-600':  (loginControls['email'].touched || submitted) && (loginControls['email'].hasError('pattern') ||
+            loginControls['email'].hasError('required'))
+          }"
+          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          placeholder="Email" />
+        @if((loginControls['email'].touched || submitted) && loginControls['email'].hasError('required')){
+        <p class="text-red-500 text-sm mt-1">
+          Email is required.
+        </p> } @else if (loginControls['email'].hasError('pattern')) {
+        <p class="text-red-500 text-sm mt-1">Email is Invalid</p>
+        }
+      </div>
+      <div class="my-6">
+        <input type="password" name="password" id="password" placeholder="Password" formControlName="password"
+          [ngClass]="{
+            'border-red-500 dark:border-red-600':  (loginControls['password'].touched || submitted) && (loginControls['password'].hasError('pattern') ||
+            loginControls['password'].hasError('required') || loginControls['password'].hasError('minlength'))
+          }"
+          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+        @if((loginControls['password'].touched || submitted) && loginControls['password'].hasError('required')){
+        <p class="text-red-500 text-sm mt-1">Password is Required</p>
+        } @else if (loginControls['password'].hasError('minlength')) {
+        <p class="text-red-500 text-sm mt-1">Password must be at least 8 characters long</p>
+        } @else if (loginControls['password'].hasError('pattern')) {
+        <p class="text-red-500 text-sm mt-1">Password must contain at least one special character ,one
+          uppercase letter and one
+          number</p>
+        }
+      </div>
+
+      <div class="card flex justify-center gap-4">
+        <p-button label="Login" [loading]="loading" (onClick)="onSubmit()" />
+      </div>
+    </form>
+  </div>
+</div>

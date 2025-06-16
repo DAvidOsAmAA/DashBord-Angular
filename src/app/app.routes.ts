@@ -1,13 +1,20 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'overview',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
     path: 'overview',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/overview/overview.component').then(
         (m) => m.OverviewComponent
@@ -17,6 +24,7 @@ export const routes: Routes = [
 
   {
     path: 'categories',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/categories/categories.component').then(
         (m) => m.CategoriesComponent
