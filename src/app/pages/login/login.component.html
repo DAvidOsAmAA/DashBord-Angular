@@ -1,16 +1,16 @@
 <p-toast />
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
   <div class="bg-white shadow-lg p-8 rounded-xl w-full max-w-sm">
-    <h2 class="text-2xl font-bold text-center text-pink-600 mb-6">Login</h2>
+    <h2 class="text-xl font-bold mb-4">Login to your account</h2>
 
     <form [formGroup]="loginForm">
 
-      <div>
+      <div class="mb-4">
         <input type="email" name="email" id="email" formControlName="email" [ngClass]="{
             'border-red-500 dark:border-red-600':  (loginControls['email'].touched || submitted) && (loginControls['email'].hasError('pattern') ||
             loginControls['email'].hasError('required'))
           }"
-          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-200 dark:placeholder-gray-400 dark:text-white"
           placeholder="Email" />
         @if((loginControls['email'].touched || submitted) && loginControls['email'].hasError('required')){
         <p class="text-red-500 text-sm mt-1">
@@ -19,13 +19,13 @@
         <p class="text-red-500 text-sm mt-1">Email is Invalid</p>
         }
       </div>
-      <div class="my-6">
+      <div class="mb-4">
         <input type="password" name="password" id="password" placeholder="Password" formControlName="password"
           [ngClass]="{
             'border-red-500 dark:border-red-600':  (loginControls['password'].touched || submitted) && (loginControls['password'].hasError('pattern') ||
             loginControls['password'].hasError('required') || loginControls['password'].hasError('minlength'))
           }"
-          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-200 dark:placeholder-gray-400 dark:text-white" />
         @if((loginControls['password'].touched || submitted) && loginControls['password'].hasError('required')){
         <p class="text-red-500 text-sm mt-1">Password is Required</p>
         } @else if (loginControls['password'].hasError('minlength')) {
@@ -37,9 +37,22 @@
         }
       </div>
 
-      <div class="card flex justify-center gap-4">
-        <p-button label="Login" [loading]="loading" (onClick)="onSubmit()" />
+      <!-- Remember me and Forgot password -->
+      <div class="flex justify-between items-center mb-4 text-sm">
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="mr-2" />
+          Remind me
+        </label>
+        <a href="#" class="text-pink-500 hover:underline">Forgot Password</a>
       </div>
+
+      <!-- Create account -->
+      <div class="text-center text-sm mb-4">
+        No account? <a href="#" class="text-pink-500 font-semibold hover:underline">Create one here</a>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="auth-button" [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
 </div>
