@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './pages/products/products.component';
+import { ProductsComponent } from './pages/manage-product/products/products.component';
 
 export const routes: Routes = [
   {
@@ -7,11 +7,28 @@ export const routes: Routes = [
     component: ProductsComponent,
     title: 'Products Management',
     data: { breadcrumb: 'Products' },
+   
   },
   {
     path: '',
     redirectTo: '/products',
     pathMatch: 'full'
+  },
+
+  {
+    path: 'add-product',
+    loadComponent: () =>
+      import('./pages/manage-product/add-product/add-product.component').then(
+        (m) => m.AddProductComponent
+      ),
+  },
+
+  {
+    path: 'update-product/:id',
+    loadComponent: () =>
+      import('./pages/manage-product/update-product/update-product.component').then(
+        (m) => m.UpdateProductComponent
+      ),
   },
   {
     path: 'overview',
