@@ -13,6 +13,21 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'verify-code',
+    loadComponent: () =>
+      import('./core/page/verify-code/verify-code.component').then((c) => c.VerifyCodeComponent),
+  },
+  {
+    path: 'forgot-pass',
+    loadComponent: () =>
+      import('./core/page/forgot-pass/forgot-pass.component').then((c) => c.ForgotPassComponent),
+  },
+  {
+    path: 'setpass',
+    loadComponent: () =>
+      import('./core/page/setpass/setpass.component').then((c) => c.SetpassComponent),
+  },
+  {
     path: 'overview',
     canActivate: [AuthGuard],
     loadComponent: () =>

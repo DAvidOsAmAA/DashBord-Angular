@@ -1,19 +1,19 @@
-// auth.guard.ts
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { inject } from '@angular/core';
+import { Router, type CanActivateFn } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+export const AuthGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  canActivate(): boolean {
-    if (this.authService.isTokenAvailabe) {
+  if (isPlatformBrowser(platformId)) {
+    const token = localStorage.getItem('token');
+    if (token) {
       return true;
     }
-    this.router.navigate(['/login']);
-    return false;
   }
-}
+
+  router.navigate(['/login']);
+  return false;
+}; 

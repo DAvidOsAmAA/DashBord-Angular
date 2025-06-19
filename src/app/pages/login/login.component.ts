@@ -10,14 +10,14 @@ import { Login, LoginForm } from '../../shared/interfaces/Auth/login';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { localStorageKeys } from '../../shared/interfaces/localStorageKeys';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, Toast],
+  imports: [CommonModule, ReactiveFormsModule, ButtonModule, Toast, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [MessageService],

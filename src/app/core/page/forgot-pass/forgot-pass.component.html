@@ -1,0 +1,27 @@
+<p-toast></p-toast>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg p-8 rounded-xl w-full max-w-sm">
+    <h2 class="text-xl font-bold mb-4">Forgot your password?</h2>
+
+    <form [formGroup]="Forget_passForm" (ngSubmit)="Forget_pass()">
+      <div class="mb-4">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+          class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+        <p *ngIf="Forget_passForm.controls['email'].touched && Forget_passForm.controls['email'].hasError('required')" class="text-red-500 text-sm mt-1">Email is required</p>
+        <p *ngIf="Forget_passForm.controls['email'].hasError('email')" class="text-red-500 text-sm mt-1">Invalid email format</p>
+      </div>
+
+      <div *ngIf="emailNotFound" class="text-red-500 text-sm mb-2">
+        Email not found or error occurred.
+      </div>
+
+      <button type="submit" [disabled]="Forget_passForm.invalid" class="auth-button">
+        Send reset link
+      </button>
+    </form>
+  </div>
+</div>
