@@ -1,14 +1,14 @@
 <div class="app-container">
-  <app-top-bar></app-top-bar>
+  <app-top-bar *ngIf="_AuthApiService.isTokenAvailabe"></app-top-bar>
 
   <div class="main-content" [class.mobile-view]="isMobileView">
-    <app-sidebar *ngIf="!isMobileView"></app-sidebar>
+    <app-sidebar *ngIf="!isMobileView && _AuthApiService.isTokenAvailabe"></app-sidebar>
 
     <div class="content-area">
-      <app-breadcrumb *ngIf="!isMobileView"></app-breadcrumb>
+      <app-breadcrumb *ngIf="!isMobileView && _AuthApiService.isTokenAvailabe"></app-breadcrumb>
       <router-outlet></router-outlet>
     </div>
   </div>
 
-  <app-mobile-nav *ngIf="isMobileView"></app-mobile-nav>
+  <app-mobile-nav *ngIf="isMobileView && _AuthApiService.isTokenAvailabe"></app-mobile-nav>
 </div>

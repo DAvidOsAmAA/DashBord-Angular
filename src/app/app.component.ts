@@ -1,10 +1,11 @@
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { BreadcrumbComponent } from './core/layout/sidebar/components/breadcrumb/breadcrumb.component';
 import { TopBarComponent } from './core/layout/top-bar/top-bar.component';
 import { MobileNavComponent } from './core/layout/mobile-nav/mobile-nav.component';
+import { AuthService } from './core/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { MobileNavComponent } from './core/layout/mobile-nav/mobile-nav.componen
 })
 export class AppComponent implements OnInit {
   isMobileView = false;
+  public _AuthApiService = inject(AuthService);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
