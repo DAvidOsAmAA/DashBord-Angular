@@ -1,0 +1,89 @@
+<div class="p-6">
+    <!-- Full Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+        <div *ngIf="statistics" class="grid grid-cols-2 gap-4 bg-white rounded-xl shadow p-5">
+            <div class="bg-pink-50 p-4 rounded-xl shadow flex flex-col items-center justify-center">
+                <i class="fas fa-box text-pink-600 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-700">Total products</p>
+                <p class="text-2xl font-bold text-pink-600">{{ statistics.totalProducts }}</p>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-xl shadow flex flex-col items-center justify-center">
+                <i class="fas fa-file-alt text-blue-600 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-700">Total orders</p>
+                <p class="text-2xl font-bold text-blue-600">{{ statistics.totalOrders }}</p>
+            </div>
+
+            <div class="bg-purple-50 p-4 rounded-xl shadow flex flex-col items-center justify-center">
+                <i class="fas fa-list text-purple-600 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-700">Total categories</p>
+                <p class="text-2xl font-bold text-purple-600">{{ statistics.totalCategories }}</p>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-xl shadow flex flex-col items-center justify-center">
+                <i class="fas fa-dollar-sign text-green-600 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-700">Total revenue</p>
+                <p class="text-2xl font-bold text-green-600">{{ statistics.totalRevenue | number }} EGP</p>
+            </div>
+        </div>
+
+        <!-- Right side: Categories Card -->
+        <div class="bg-white rounded-xl shadow p-4">
+            <h2 class="text-xl font-semibold mb-4">All Categories</h2>
+            <p-scrollPanel [style]="{ width: '100%', height: '260px' }">
+                <div *ngFor="let cat of categories" class="flex justify-between border-b py-2">
+                    <span>{{ cat.name }}</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded text-sm">{{ cat.totalProducts }} Products</span>
+                </div>
+            </p-scrollPanel>
+        </div>
+
+    </div>
+
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Order Status Chart -->
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+            <h3 class="text-lg font-semibold mb-4">Orders Status</h3>
+            <p-chart *ngIf="ordersChartData" type="doughnut" [data]="ordersChartData" [options]="ordersChartOptions"
+                styleClass="w-64 h-64"></p-chart>
+        </div>
+
+        <!-- Revenue Line Chart -->
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">Revenue</h2>
+                <span class="text-pink-500 font-medium">Monthly</span>
+            </div>
+            <p-chart type="line" [data]="revenueChartData" [options]="revenueChartOptions"
+                styleClass="w-full h-64"></p-chart>
+        </div>
+
+        <!-- Top Selling Products -->
+        <div class="bg-white rounded-xl shadow p-4">
+            <h2 class="text-xl font-semibold mb-4">Top Selling Products</h2>
+            <p-scrollPanel [style]="{ width: '100%', height: '260px' }">
+                <div *ngFor="let product of topSellingProducts" class="flex justify-between border-b py-2">
+                    <span>{{ product.title }} ({{ product.price }} EGP)</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded text-sm">{{ product.sold }} Sales</span>
+                </div>
+            </p-scrollPanel>
+        </div>
+
+        <!-- Low Stock Products -->
+        <div class="bg-white rounded-xl shadow p-4">
+            <h2 class="text-xl font-semibold mb-4">Low Stock Products</h2>
+            <ng-container *ngIf="lowStockProducts && lowStockProducts.length > 0; else noLowStock">
+                <p-scrollPanel [style]="{ width: '100%', height: '260px' }">
+                    <div *ngFor="let product of lowStockProducts" class="flex justify-between border-b py-2">
+                        <span>{{ product.title }} ({{ product.price }} EGP)</span>
+                        <span class="bg-gray-100 px-2 py-1 rounded text-sm">{{ product.sold }} Sales</span>
+                    </div>
+                </p-scrollPanel>
+            </ng-container>
+            <ng-template #noLowStock>
+                <span>No Data To Show</span>
+            </ng-template>
+        </div>
+    </div>
+</div>

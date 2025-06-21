@@ -1,8 +1,14 @@
-<h1 class="text-3xl text-red-100 font-bold underline">
-  Hello world!
-</h1>
+<div class="app-container">
+  <app-top-bar *ngIf="_AuthApiService.isTokenAvailabe"></app-top-bar>
 
-<div class="card flex justify-center">
-    <p-button label="Check" />
+  <div class="main-content" [class.mobile-view]="isMobileView">
+    <app-sidebar *ngIf="!isMobileView && _AuthApiService.isTokenAvailabe"></app-sidebar>
+
+    <div class="content-area">
+      <app-breadcrumb *ngIf="!isMobileView && _AuthApiService.isTokenAvailabe"></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <app-mobile-nav *ngIf="isMobileView && _AuthApiService.isTokenAvailabe"></app-mobile-nav>
 </div>
-<router-outlet></router-outlet>
