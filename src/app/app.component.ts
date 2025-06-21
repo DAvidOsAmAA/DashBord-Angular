@@ -37,4 +37,12 @@ export class AppComponent implements OnInit {
       this.isMobileView = window.innerWidth <= 768;
     }
   }
+
+  someMethod() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Safe to use localStorage here
+      localStorage.setItem('key', 'value');
+    }
+  }
+
 }
