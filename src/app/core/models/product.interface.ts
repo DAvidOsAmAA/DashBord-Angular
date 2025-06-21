@@ -29,3 +29,24 @@ export interface ProductsResponse {
   };
   products: Product[];
 } 
+
+export interface AddProduct {
+  title: string;
+  description: string;
+  quantity: number;
+  price: number;
+  discount: number;
+  priceAfterDiscount: number;
+  category: string;
+  occasion: string;
+  imgCover: File;
+  images: File[];
+}
+
+export interface UpdateProduct {
+  price: number;
+  rateAvg: number;
+  rateCount: number;
+}
+  
+

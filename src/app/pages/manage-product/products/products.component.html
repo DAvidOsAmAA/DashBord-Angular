@@ -5,9 +5,11 @@
   <div class="header">
     <h1>Products Management</h1>
     <button pButton 
+            routerLink="/add-product"
             label="Add a new product" 
             icon="fas fa-plus"
-            class="p-button-primary">
+            class="p-button-primary"
+            >
     </button>
   </div>
   <div class="search-container">
@@ -62,7 +64,7 @@
             <button pButton 
                     icon="fas fa-edit"
                     class="p-button-text update-button"
-                    (click)="onUpdate(product)"> Update
+                    routerLink="/update-product/{{product._id}}"> Update
             </button>
             <button pButton 
                     icon="fas fa-trash-alt"

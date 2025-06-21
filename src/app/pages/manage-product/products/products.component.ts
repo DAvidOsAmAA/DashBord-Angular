@@ -10,8 +10,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { Subject, takeUntil } from 'rxjs';
-import { ProductsService } from '../../core/services/products/products.service';
-import { Product } from '../../core/models/product.interface';
+import { ProductsService } from '../../../core/services/products/products.service';
+import { Product } from '../../../core/models/product.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +26,8 @@ import { Product } from '../../core/models/product.interface';
     OverlayPanelModule,
     ConfirmDialogModule,
     ToastModule,
-    InputTextModule
+    InputTextModule,
+    RouterLink
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './products.component.html',

@@ -1,0 +1,13 @@
+<div class="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full">
+    <p class="text-center text-xl font-semibold mb-4">Category Imge</p>
+    <img [src]="img" alt="Image Preview" class="w-full h-auto rounded-lg border border-gray-300" />
+    
+    <div class="text-center mt-4">
+      <button   (click)="close()"
+  class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
