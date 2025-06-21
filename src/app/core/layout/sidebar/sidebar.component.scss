@@ -5,7 +5,8 @@
 
 .sidebar-container {
   width: 260px;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background: white;
   padding: 24px 20px;
   display: flex;
