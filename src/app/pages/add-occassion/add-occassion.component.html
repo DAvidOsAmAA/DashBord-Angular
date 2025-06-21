@@ -1,38 +1,45 @@
 <div class="flex flex-col gap-4 container mx-auto">
-  <p class="text-2xl mt-3 font-semibold">Add a new category</p>
-  <form [formGroup]="addCatgory" (ngSubmit)="sendData()">
+  <p class="text-2xl mt-3 font-semibold">Add a new occasion</p>
+  <form [formGroup]="addOccssion" (ngSubmit)="sendData()">
     <div class="flex flex-col gap-1">
       <label for="name">Name</label>
       <input formControlName="name" type="text" id="name" pInputText />
       <error-alert
-        [FormName]="addCatgory"
+        [FormName]="addOccssion"
         controlName="name"
         errorMsg="Name is required"
         error="required"
       ></error-alert>
       <error-alert
-        [FormName]="addCatgory"
+        [FormName]="addOccssion"
         controlName="name"
-        errorMsg="must be shorter than 20 character"
+        errorMsg="must be longer than 2 characters"
         error="minlength"
       ></error-alert>
       <error-alert
-        [FormName]="addCatgory"
+        [FormName]="addOccssion"
         controlName="name"
-        errorMsg="must be longer than 2 character"
+        errorMsg="must be shorter than 20 characters"
         error="maxlength"
       ></error-alert>
     </div>
+
     <div class="flex flex-col gap-1 my-5">
       <label for="image">Image</label>
       <input formControlName="image" type="file" id="image" pInputText />
       <error-alert
-        [FormName]="addCatgory"
+        [FormName]="addOccssion"
         controlName="image"
         errorMsg="Image is required"
         error="required"
       ></error-alert>
     </div>
-    <p-button [disabled]="addCatgory.invalid" type="submit" label="Add Category" class="btnAddCategory" />
+
+    <p-button
+      [disabled]="addOccssion.invalid"
+      type="submit"
+      label="Add Category"
+      class="btnAddCategory"
+    ></p-button>
   </form>
 </div>
