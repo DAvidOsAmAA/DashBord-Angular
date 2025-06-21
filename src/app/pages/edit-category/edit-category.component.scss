@@ -1,0 +1,12 @@
+::ng-deep .btnAddCategory button {
+  background-color: #F82BA9 !important;
+  border-color: #F82BA9 !important;
+  width: 100% !important;
+  text-align: center;
+}
+
+::ng-deep input:focus {
+  border-color: #F82BA9 !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(248, 43, 169, 0.2); 
+}

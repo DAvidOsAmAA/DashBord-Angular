@@ -1,0 +1,88 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-10 px-4">
+  <div class="w-full max-w-1xl bg-white rounded-2xl shadow-lg p-8">
+    <h2 class="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-800">
+      Add New Product
+    </h2>
+
+    <form [formGroup]="addProductForm" (ngSubmit)="submit()" novalidate autocomplete="off">
+      
+      <!-- Title -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Title</label>
+        <input type="text" formControlName="title" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Product title" />
+      </div>
+
+      <!-- Description -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Description</label>
+        <textarea formControlName="description" rows="4" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Write a short description"></textarea>
+      </div>
+
+      <!-- Price, Discount, Price After Discount -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+        <div>
+          <label class="block font-medium mb-2 text-gray-700">Price</label>
+          <input type="number" formControlName="price" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Price" />
+        </div>
+        <div>
+          <label class="block font-medium mb-2 text-gray-700">Discount</label>
+          <input type="number" formControlName="discount" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Discount" />
+        </div>
+        <div>
+          <label class="block font-medium mb-2 text-gray-700">After Discount</label>
+          <input type="number" formControlName="priceAfterDiscount" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Final Price" />
+        </div>
+      </div>
+
+      <!-- Quantity -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Quantity</label>
+        <input type="number" formControlName="quantity" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" placeholder="Available stock" />
+      </div>
+
+      <!-- Product Cover and Gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+        <div>
+          <label class="block font-medium mb-2 text-gray-700">Product Cover</label>
+          <label class="flex items-center gap-2 cursor-pointer bg-gray-100 border border-gray-300 rounded-md px-4 py-2 hover:bg-pink-50 transition">
+            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/></svg>
+            <span class="text-gray-700">Upload cover</span>
+            <input type="file" (change)="onFileChange($event, 'imgCover')" class="hidden" />
+          </label>
+        </div>
+        <div>
+          <label class="block font-medium mb-2 text-gray-700">Gallery Images</label>
+          <label class="flex items-center gap-2 cursor-pointer bg-gray-100 border border-gray-300 rounded-md px-4 py-2 hover:bg-pink-50 transition">
+            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/></svg>
+            <span class="text-gray-700">Upload images</span>
+            <input type="file" (change)="onFileChange($event, 'images')" class="hidden" multiple />
+          </label>
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Category</label>
+        <select formControlName="category" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
+          <option value="">Select category</option>
+          <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+        </select>
+      </div>
+
+      <!-- Occasion -->
+      <div class="mb-8">
+        <label class="block font-medium mb-2 text-gray-700">Occasion</label>
+        <select formControlName="occasion" class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
+          <option value="">Select occasion</option>
+          <option *ngFor="let occ of occasions" [value]="occ._id">{{ occ.name }}</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="addProductForm.invalid" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-md shadow transition flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        Add Product
+      </button>
+    </form>
+  </div>
+</div>

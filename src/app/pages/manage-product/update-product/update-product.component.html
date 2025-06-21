@@ -1,0 +1,84 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-10 px-4">
+  <div class="w-full max-w-1xl bg-white rounded-2xl shadow-lg p-8">
+    <h2 class="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-800">
+      Update Product
+    </h2>
+
+    <div *ngIf="loading" class="text-center py-8">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500"></div>
+      <p class="mt-2 text-gray-600">Loading product...</p>
+    </div>
+
+    <form *ngIf="!loading && product" [formGroup]="updateProductForm" (ngSubmit)="submit()" novalidate autocomplete="off">
+      
+      <!-- Product Info Display -->
+      <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+        <h3 class="font-semibold text-lg mb-2 text-gray-800">{{ product.title }}</h3>
+        <p class="text-gray-600 text-sm">{{ product.description }}</p>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Price <span class="text-red-500">*</span></label>
+        <input 
+          type="number" 
+          formControlName="price" 
+          class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" 
+          placeholder="Enter price" 
+        />
+        <div *ngIf="updateProductForm.get('price')?.invalid && updateProductForm.get('price')?.touched" class="text-red-500 text-xs mt-1">
+          Please enter a valid price
+        </div>
+      </div>
+
+      <!-- Rate Average -->
+      <div class="mb-5">
+        <label class="block font-medium mb-2 text-gray-700">Rating Average <span class="text-red-500">*</span></label>
+        <input 
+          type="number" 
+          formControlName="rateAvg" 
+          step="0.1"
+          class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" 
+          placeholder="Enter rating (0-5)" 
+        />
+        <div *ngIf="updateProductForm.get('rateAvg')?.invalid && updateProductForm.get('rateAvg')?.touched" class="text-red-500 text-xs mt-1">
+          Please enter a valid rating between 0 and 5
+        </div>
+      </div>
+
+      <!-- Rate Count -->
+      <div class="mb-8">
+        <label class="block font-medium mb-2 text-gray-700">Rating Count <span class="text-red-500">*</span></label>
+        <input 
+          type="number" 
+          formControlName="rateCount" 
+          class="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition" 
+          placeholder="Enter number of ratings" 
+        />
+        <div *ngIf="updateProductForm.get('rateCount')?.invalid && updateProductForm.get('rateCount')?.touched" class="text-red-500 text-xs mt-1">
+          Please enter a valid count
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        [disabled]="updateProductForm.invalid || loading" 
+        class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-md shadow transition flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <svg *ngIf="!loading" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+        <div *ngIf="loading" class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+        {{ loading ? 'Updating...' : 'Update Product' }}
+      </button>
+    </form>
+
+    <div *ngIf="!loading && !product" class="text-center py-8">
+      <p class="text-gray-600">Product not found</p>
+      <button (click)="goBack()" class="mt-4 text-pink-500 hover:text-pink-600">
+        Back to Products
+      </button>
+    </div>
+  </div>
+</div>

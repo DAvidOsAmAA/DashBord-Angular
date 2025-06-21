@@ -1,0 +1,6 @@
+    @if( FormName.get(controlName)?.touched){
+      @if(FormName.get(controlName)?.getError(error)){
+      <p-message severity="error" variant="simple" size="small"
+        >{{errorMsg}}
+      </p-message>
+      } }
