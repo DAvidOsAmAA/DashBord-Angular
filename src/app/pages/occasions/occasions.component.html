@@ -1,0 +1,63 @@
+
+  <div class="flex justify-between mt-3">
+    <h2 class="font-semibold text-3xl ps-3">All Occasions</h2>
+    <button
+      [routerLink]="['/occasions/add-occasion']"
+      class="btn bg-pink-500 text-white w-48 rounded-lg flex justify-around items-center"
+    >
+      <i class="fa-solid fa-plus text-white"></i
+      ><span class="">Add new Occasions</span>
+    </button>
+  </div>
+  <p-inputicon styleClass="pi pi-search" class="serach-icon" />
+<input
+  type="text"
+  pInputText
+  placeholder="Search"
+  class="serach-iconfield"
+  [(ngModel)]="searchQuery"
+  (input)="filterOccasions()"
+/><p-table
+[value]="filteredOccasions"
+  [paginator]="true"
+  [rows]="10"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [loading]="loading"
+  [responsive]="true"
+  class="my-5"
+  styleClass="custom-table"
+
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="px-4 py-3">Name</th>
+      <th class="px-4 py-3">Products</th>
+      <th class="px-4 py-3 text-right"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-occasion>
+    <tr>
+      <td class="font-semibold font-medium px-2 py-3">{{ occasion.name }}</td>
+      <td class="text-gray-600 font-medium px-2 py-3">
+        {{ occasion.productsCount }} products
+      </td>
+      <td class="px-4 py-3 flex space-x-2 justify-end">
+        <button
+          class="text-blue-600 hover:underline text-sm bg-sky-200 p-3 rounded-lg"
+          [routerLink]="['/occasions/edit-occasions/', occasion._id]"
+        >
+          <i class="fa-solid fa-pen mx-1"></i>Edit
+        </button>
+        <button
+          (click)="deleteOccasion(occasion._id)"
+          class="text-red-600 mx-3 hover:underline text-sm bg-red-200 p-3 rounded-lg"
+        >
+          <i class="fa-regular fa-trash-can"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

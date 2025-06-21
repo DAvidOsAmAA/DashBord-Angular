@@ -7,24 +7,35 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { RouterLink } from '@angular/router';
+import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
+import { FormsModule, NgModel } from '@angular/forms';
 @Component({
   selector: 'app-categories',
-  imports: [ToolbarModule ,ButtonModule,SplitButtonModule,InputTextModule,IconFieldModule,InputIconModule],
+  imports: [InputIconModule, FormsModule,InputTextModule,TableModule, PaginatorModule,RouterLink,RouterLink],
   templateUrl: './categories.component.html',
+  
   styleUrl: './categories.component.scss',
 })
 export class CategoriesComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
-
-  allCategoories: ICategory[] = [];
+loading: boolean = true;
+  allCategories: ICategory[] = [];
+  searchQuery: string = '';
+filteredCategories: ICategory[] = [];
 
   getCategoriesData(): void {
+    this.loading = true;
     this.categoriesService.getAllGategories().subscribe({
       next: (res) => {
+        this.loading = false;
         console.log(res.categories);
-        this.allCategoories = res.categories;
+        this.allCategories = res.categories;
+        this.filteredCategories = [...this.allCategories];
       },
       error: (err) => {
+        this.loading = false;
         console.log(err);
       },
     });
@@ -46,4 +57,19 @@ removeItem(id:string):void{
     }
   )
 }
+
+
+filterCategories(): void {
+  if (!this.searchQuery.trim()) {
+    this.filteredCategories = [...this.allCategories];
+    return;
+  }
+
+  const query = this.searchQuery.toLowerCase().trim();
+  this.filteredCategories = this.allCategories.filter(category =>
+    category.name.toLowerCase().includes(query) ||
+    category.productsCount?.toString().includes(query)
+  );
+}
+
 }

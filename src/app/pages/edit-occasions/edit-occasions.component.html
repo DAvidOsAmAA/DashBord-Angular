@@ -1,0 +1,52 @@
+<div class="flex flex-col gap-4 container mx-auto">
+  <p class="text-2xl mt-3 font-semibold">
+    Update Occasion: {{ occasion?.name }}
+  </p>
+
+  <form [formGroup]="editOccasionsForm">
+    <div class="flex flex-col gap-1">
+      <label for="name">Name</label>
+      <input formControlName="name" type="text" id="name" pInputText />
+
+      <error-alert
+        [FormName]="editOccasionsForm"
+        controlName="name"
+        errorMsg="Name is required"
+        error="required"
+      ></error-alert>
+      <error-alert
+        [FormName]="editOccasionsForm"
+        controlName="name"
+        errorMsg="must be longer than 2 characters"
+        error="minlength"
+      ></error-alert>
+      <error-alert
+        [FormName]="editOccasionsForm"
+        controlName="name"
+        errorMsg="must be shorter than 20 characters"
+        error="maxlength"
+      ></error-alert>
+    </div>
+
+    <div
+      class="flex border-2 border-gray-200 w-48 p-2 m-3 cursor-pointer"
+      (click)="openPopup()"
+    >
+      <h3 class="text-blue-600 cursor-pointer text-center px-3">
+        View occasion image
+      </h3>
+    </div>
+
+    @if (showPopup) {
+      <view-img [img]="occasion?.image" (closePopup)="showPopup = false" />
+    }
+
+    <p-button
+      [disabled]="editOccasionsForm.invalid"
+      type="submit"
+      label="Update Occasion"
+      class="btnAddCategory"
+      (click)="editOccasions()"
+    />
+  </form>
+</div>
